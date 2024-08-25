@@ -83,7 +83,7 @@ static const struct proc_ops sysinfo_ops = {
 */
 static int __init sysinfo_init(void) {
     proc_create(PROC_NAME, 0, NULL, &sysinfo_ops);
-    printk(KERN_INFO "Modulo basic cargado\n");
+    printk(KERN_INFO "Modulo basic cargado \n");
     return 0;
 }
 
