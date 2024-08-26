@@ -1,0 +1,1 @@
+savedcmd_/home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/modulo/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/modulo/Module.symvers -T /home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/modulo/modules.order -i Module.symvers -e 

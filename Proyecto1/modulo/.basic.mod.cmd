@@ -1,0 +1,1 @@
+savedcmd_/home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/modulo/basic.mod := printf '%s\n'   basic.o | awk '!x[$$0]++ { print("/home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/modulo/"$$0) }' > /home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/modulo/basic.mod

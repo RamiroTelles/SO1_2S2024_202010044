@@ -1,0 +1,1 @@
+savedcmd_/home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/modulo/basic.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/modulo/basic.ko /home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/modulo/basic.o /home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/modulo/basic.mod.o
