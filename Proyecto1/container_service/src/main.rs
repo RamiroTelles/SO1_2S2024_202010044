@@ -2,6 +2,7 @@ use std::fs::File;
 use std::io::{self, Read};
 use std::path::Path;
 use serde::{Deserialize, Serialize};
+use chrono::{DateTime, Local};
 
 #[derive(Debug, Serialize, Deserialize)]
 struct SystemInfo {
@@ -20,6 +21,10 @@ struct Process {
     name: String,
     #[serde(rename = "Cmdline")]
     cmd_line: String,
+    #[serde(rename = "Vsz")]
+    vsz: f64,
+    #[serde(rename = "Rss")]
+    rss: f64,
     #[serde(rename = "MemoryUsage")]
     memory_usage: f64,
     #[serde(rename = "CPUUsage")]
@@ -158,8 +163,7 @@ fn analyzer( system_info:  SystemInfo,id:&str) {
     processes_list.sort();
 
 
-    // Dividimos la lista de procesos en dos partes iguales.
-    //let (lowest_list, highest_list) = processes_list.split_at(processes_list.len() / 2);
+   
 
     println!("------------------------------");
     println!("Total Memoria {}, Memoria Usada {}, Memoria Libre {}", system_info.ram_total,system_info.ram_free,system_info.ram_usage);
@@ -182,91 +186,53 @@ fn analyzer( system_info:  SystemInfo,id:&str) {
         println!("PID: {}, Name: {}, container ID: {}, Memory Usage: {}, CPU Usage: {}", processes_list[i].pid, processes_list[i].name, processes_list[i].get_container_id(), processes_list[i].memory_usage, processes_list[i].cpu_usage);
 
     }
-    /* 
-        En la lista de bajo consumo, matamos todos los contenedores excepto los 3 primeros.
-        antes 
-        | 1 | 2 | 3 | 4 | 5 |
+    println!("------------------------------");
 
-        después
-        | 1 | 2 | 3 |
-    */
-    
+    //Obtener fecha y hora
+    let ahora: DateTime<Local> = Local::now();
+
+    // Formatear la fecha y hora
+    let fecha_formateada = ahora.format("%Y-%m-%d %H:%M:%S").to_string();
+    //println!("Fecha y hora formateada: {}", fecha_formateada);
+
     if processes_list.len() > 6{
         for i in 3..processes_list.len()-2{
             let id_proceso = &processes_list[i].get_container_id().to_string()[..12];
-            println!("{}",id_proceso);
-            println!("{}",id);
+            //println!("{}",id_proceso);
+            //println!("{}",id);
             if id_proceso == id{
-                println!("Container logs");
+                //println!("Container logs");
                 continue;
             }
-            // let log_process = LogProcess {
-            //     pid: processes_list[i].pid,
-            //     container_id: processes_list[i].get_container_id().to_string(),
-            //     name: processes_list[i].name.clone(),
-            //     memory_usage: processes_list[i].memory_usage,
-            //     cpu_usage: processes_list[i].cpu_usage,
-            // };
 
-            // log_proc_list.push(log_process.clone());
-            println!("eliminar: {}",processes_list[i].get_container_id().to_string());
+            let log_process = LogProcess {
+                pid: processes_list[i].pid,
+                container_id: processes_list[i].get_container_id().to_string(),
+                name: processes_list[i].name.clone(),
+                vsz: processes_list[i].vsz,
+                rss: processes_list[i].rss,
+                memory_usage: processes_list[i].memory_usage,
+                cpu_usage: processes_list[i].cpu_usage,
+                action: processes_list[i].cmd_line.clone(),
+                timestamp: fecha_formateada.clone()
+            };
+
+            log_proc_list.push(log_process.clone());
+            //println!("eliminar: {}",processes_list[i].get_container_id().to_string());
+            //let _output = kill_container(&process.get_container_id());
         }
     }
     
     
-    // if lowest_list.len() > 3 {
-    //     // Iteramos sobre los procesos en la lista de bajo consumo.
-    //     for process in lowest_list.iter().skip(3) {
-    //         let log_process = LogProcess {
-    //             pid: process.pid,
-    //             container_id: process.get_container_id().to_string(),
-    //             name: process.name.clone(),
-    //             memory_usage: process.memory_usage,
-    //             cpu_usage: process.cpu_usage,
-    //         };
-    
-    //         log_proc_list.push(log_process.clone());
+  
 
-    //         // Matamos el contenedor.
-    //         let _output = kill_container(&process.get_container_id());
+    // TODO: ENVIAR LOGS AL CONTENEDOR REGISTRO
 
-    //     }
-    // } 
-
-    // /* 
-    //     En la lista de alto consumo, matamos todos los contenedores excepto los 2 últimos.
-    //     antes 
-    //     | 1 | 2 | 3 | 4 | 5 |
-
-    //     después
-    //                 | 4 | 5 |
-    // */
-    // if highest_list.len() > 2 {
-    //     // Iteramos sobre los procesos en la lista de alto consumo.
-    //     for process in highest_list.iter().take(highest_list.len() - 2) {
-    //         let log_process = LogProcess {
-    //             pid: process.pid,
-    //             container_id: process.get_container_id().to_string(),
-    //             name: process.name.clone(),
-    //             memory_usage: process.memory_usage,
-    //             cpu_usage: process.cpu_usage
-    //         };
-    
-    //         log_proc_list.push(log_process.clone());
-
-    //         // Matamos el contenedor.
-    //         let _output = kill_container(&process.get_container_id());
-
-    //     }
-    // }
-
-    // // TODO: ENVIAR LOGS AL CONTENEDOR REGISTRO
-
-    // // Hacemos un print de los contenedores que matamos.
-    // println!("Contenedores matados");
-    // for process in log_proc_list {
-    //     println!("PID: {}, Name: {}, Container ID: {}, Memory Usage: {}, CPU Usage: {} ", process.pid, process.name, process.container_id,  process.memory_usage, process.cpu_usage);
-    // }
+    // Hacemos un print de los contenedores que matamos.
+    println!("Contenedores matados");
+    for process in log_proc_list {
+        println!("PID: {}, Name: {}, Container ID: {},Vsz {},Rss {}, Memory Usage: {}, CPU Usage: {},action {}, timestamp {} ", process.pid, process.name, process.container_id,process.vsz,process.rss,  process.memory_usage, process.cpu_usage,process.action,process.timestamp);
+    }
 
     println!("------------------------------");
 
