@@ -29,16 +29,22 @@ struct Process {
 #[derive(Debug, Serialize, Clone)]
 struct LogProcess {
     pid: u32,
-    container_id: String,
     name: String,
+    container_id: String,
+    vsz:f64,
+    rss:f64,
     memory_usage: f64,
     cpu_usage: f64,
+    action: String,
+    timestamp:String,
 }
 
+#[derive(Debug, Serialize, Clone)]
 struct LogRam{
-    ram_total: f64,
-    ram_free: f64,
-    ram_usage: f64,
+    total_ram: f64,
+    free_ram: f64,
+    usage_ram: f64,
+    timestamp: String,
 }
 
 impl Process {
