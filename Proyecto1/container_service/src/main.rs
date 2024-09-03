@@ -84,7 +84,8 @@ impl PartialOrd for Process {
 fn kill_container(id: &str) -> std::process::Output {
     let  output = std::process::Command::new("sudo")
         .arg("docker")
-        .arg("stop")
+        .arg("rm")
+        .arg("-f")
         .arg(id)
         .output()
         .expect("failed to execute process");
@@ -219,7 +220,8 @@ fn analyzer( system_info:  SystemInfo,id:&str) {
 
             log_proc_list.push(log_process.clone());
             //println!("eliminar: {}",processes_list[i].get_container_id().to_string());
-            //let _output = kill_container(&process.get_container_id());
+            let _output = kill_container(&processes_list[i].get_container_id());
+            println!("{:?}",_output)
         }
     }
     
@@ -320,7 +322,7 @@ fn main() {
         .expect("Fallo al ejecutar docker compose down");
 
     if output.status.success() {
-        println!("{:?}",&output);
+        println!("Compose down");
     } else {
         eprintln!(
             "Error al ejecutar Docker Compose: {}",
@@ -329,6 +331,6 @@ fn main() {
     }
 
 
-    // TODO: antes de iniciar el loop, ejecutar el docker-compose.yml y obtener el id del contenedor registro.
+    
     println!("------------------------------");
 }
