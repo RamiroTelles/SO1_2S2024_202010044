@@ -3,6 +3,8 @@ use std::io::{self, Read};
 use std::path::Path;
 use serde::{Deserialize, Serialize};
 use chrono::{DateTime, Local};
+use reqwest::Client;
+use std::error::Error;
 
 #[derive(Debug, Serialize, Deserialize)]
 struct SystemInfo {
@@ -125,11 +127,72 @@ fn parse_proc_to_struct(json_str: &str) -> Result<SystemInfo, serde_json::Error>
     Ok(system_info)
 }
 
+#[tokio::main]
+async fn enviar_json_logs(logs_procesess: &Vec<LogProcess>) -> Result<(), Box<dyn Error>> {
+     // Crea un cliente HTTP
+     let client = Client::new();
+
+     
+ 
+     // Realiza la petición POST
+     let response = client.post("http://0.0.0.0:8000/logs") // URL del servidor
+         .json(logs_procesess) // Convertir los datos a JSON
+         .send() // Enviar la solicitud
+         .await?; // Esperar la respuesta
+ 
+     // Verifica el estado de la respuesta
+     if response.status().is_success() {
+         println!("¡Datos enviados exitosamente!");
+     } else {
+         println!("Error al enviar los datos: {:?}", response.status());
+     }
+ 
+     Ok(())
+}
+
+#[tokio::main]
+async fn enviar_json_ram(log_ram: &Vec<LogRam>) -> Result<(), Box<dyn Error>> {
+     // Crea un cliente HTTP
+     let client = Client::new();
+
+   
+ 
+     // Realiza la petición POST
+     let response = client
+         .post("http://0.0.0.0:8000/memory") // URL del servidor
+         .json(log_ram) // Convertir los datos a JSON
+         .send() // Enviar la solicitud
+         .await?; // Esperar la respuesta
+ 
+     // Verifica el estado de la respuesta
+     if response.status().is_success() {
+         println!("¡Datos enviados exitosamente!");
+     } else {
+         println!("Error al enviar los datos: {:?}", response.status());
+     }
+ 
+     Ok(())
+}
+
+#[tokio::main]
+async fn get_graph() -> Result<(), Box<dyn Error>> {
+    // Crea un cliente HTTP
+    let body = reqwest::get("http://0.0.0.0:8000/graph")
+    .await?
+    .text()
+    .await?;
+
+    println!("body = {body:?}");
+ 
+    Ok(())
+}
+
 fn analyzer( system_info:  SystemInfo,id:&str) {
 
 
     // Creamos un vector vacío para guardar los logs de los procesos.
     let mut log_proc_list: Vec<LogProcess> = Vec::new();
+    let mut log_ram_list: Vec<LogRam> = Vec::new();
 
 
     /* 
@@ -225,10 +288,22 @@ fn analyzer( system_info:  SystemInfo,id:&str) {
         }
     }
     
-    
-  
 
+    let log_ram = LogRam{
+        total_ram: system_info.ram_total,
+        free_ram: system_info.ram_free,
+        usage_ram: system_info.ram_usage,
+        timestamp: fecha_formateada.clone()
+    };
+  
+    log_ram_list.push(log_ram);
+
+    if log_proc_list.len()>0{
+        let _=enviar_json_logs(&log_proc_list);
+    }
     // TODO: ENVIAR LOGS AL CONTENEDOR REGISTRO
+    
+    let _=enviar_json_ram(&log_ram_list);
 
     // Hacemos un print de los contenedores que matamos.
     println!("Contenedores matados");
@@ -238,9 +313,35 @@ fn analyzer( system_info:  SystemInfo,id:&str) {
 
     println!("------------------------------");
 
-    
+    //let _=get_graph();
 }
 
+fn cleanup(){
+
+    let _ = get_graph();
+
+    let ruta = "../scripts/imagenLogs";
+
+    let output = std::process::Command::new("sh")
+        .arg("-c")
+        .arg(format!("cd {} && sudo docker compose down", &ruta))
+        .output()
+        .expect("Fallo al ejecutar docker compose down");
+
+    if output.status.success() {
+        println!("Compose down");
+    } else {
+        eprintln!(
+            "Error al ejecutar Docker Compose: {}",
+            String::from_utf8_lossy(&output.stderr)
+        );
+    }
+
+
+    
+    println!("------------------------------");
+
+}
 
 fn main() {
     println!("------------------------------");
@@ -267,7 +368,7 @@ fn main() {
         if id_output.status.success() {
             container_id = String::from_utf8_lossy(&id_output.stdout).trim().to_string();
             
-            println!("{}", container_id.trim());
+           // println!("{}", container_id.trim());
 
         } else {
             eprintln!(
@@ -308,29 +409,9 @@ fn main() {
 
         // Dormimos el hilo principal por 10 segundos.
         std::thread::sleep(std::time::Duration::from_secs(10));
-        break;
-    }
-
-    println!("------------------------------");
-
-    let ruta = "../scripts/imagenLogs";
-
-    let output = std::process::Command::new("sh")
-        .arg("-c")
-        .arg(format!("cd {} && sudo docker compose down", &ruta))
-        .output()
-        .expect("Fallo al ejecutar docker compose down");
-
-    if output.status.success() {
-        println!("Compose down");
-    } else {
-        eprintln!(
-            "Error al ejecutar Docker Compose: {}",
-            String::from_utf8_lossy(&output.stderr)
-        );
+        //break;
     }
 
 
-    
-    println!("------------------------------");
+   
 }

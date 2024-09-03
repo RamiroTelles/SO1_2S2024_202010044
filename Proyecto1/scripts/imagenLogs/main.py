@@ -12,6 +12,10 @@ app = FastAPI()
 def read_root():
     return {"Hello": "World"}
 
+@app.get("/graph")
+def get_logs():
+    return {"Graficas": "Creadas"}
+
 
 @app.post("/logs")
 def get_logs(logs_proc: List[logContainer]):
@@ -62,3 +66,4 @@ def get_memory(logs_memory1: List[logMemory]):
         
 
     return {"received": True}
+
