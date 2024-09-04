@@ -112,5 +112,89 @@
         "free_ram": 10511648,
         "usage_ram": 5763864,
         "timestamp": "2024-09-04 04:39:54"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3888820,
+        "usage_ram": 12386692,
+        "timestamp": "2024-09-04 16:22:05"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3243888,
+        "usage_ram": 13031624,
+        "timestamp": "2024-09-04 16:22:15"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3598052,
+        "usage_ram": 12677460,
+        "timestamp": "2024-09-04 16:22:28"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3664460,
+        "usage_ram": 12611052,
+        "timestamp": "2024-09-04 16:22:39"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3054756,
+        "usage_ram": 13220756,
+        "timestamp": "2024-09-04 16:22:49"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 2765632,
+        "usage_ram": 13509880,
+        "timestamp": "2024-09-04 16:23:00"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3234484,
+        "usage_ram": 13041028,
+        "timestamp": "2024-09-04 16:23:14"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3837072,
+        "usage_ram": 12438440,
+        "timestamp": "2024-09-04 16:23:26"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3791656,
+        "usage_ram": 12483856,
+        "timestamp": "2024-09-04 16:23:36"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3787912,
+        "usage_ram": 12487600,
+        "timestamp": "2024-09-04 16:23:46"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3838040,
+        "usage_ram": 12437472,
+        "timestamp": "2024-09-04 16:23:56"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3819044,
+        "usage_ram": 12456468,
+        "timestamp": "2024-09-04 16:24:06"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3824388,
+        "usage_ram": 12451124,
+        "timestamp": "2024-09-04 16:24:16"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 3841304,
+        "usage_ram": 12434208,
+        "timestamp": "2024-09-04 16:24:26"
     }
 ]
