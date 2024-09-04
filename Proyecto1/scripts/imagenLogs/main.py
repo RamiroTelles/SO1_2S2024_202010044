@@ -57,7 +57,7 @@ def get_graphs():
 
 
     #y_cont.append(len(x_cont))
-    actualDate= datos_cont[0].get('timestamp','0')
+    #actualDate= datos_cont[0].get('timestamp','0')
     for elem in datos_cont:
         # if actualDate == elem.get('timestamp','0'):
         #     x_cont[len(x_cont)-1] = x_cont[len(x_cont)-1]+1
