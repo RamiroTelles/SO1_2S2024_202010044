@@ -5,6 +5,9 @@ use serde::{Deserialize, Serialize};
 use chrono::{DateTime, Local};
 use reqwest::Client;
 use std::error::Error;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::Arc;
+use ctrlc;
 
 #[derive(Debug, Serialize, Deserialize)]
 struct SystemInfo {
@@ -92,7 +95,7 @@ fn kill_container(id: &str) -> std::process::Output {
         .output()
         .expect("failed to execute process");
 
-    println!("Matando contenedor con id: {}", id);
+    //println!("Matando contenedor con id: {}", id);
 
     output
 }
@@ -308,7 +311,7 @@ fn analyzer( system_info:  SystemInfo,id:&str) {
     // Hacemos un print de los contenedores que matamos.
     println!("Contenedores matados");
     for process in log_proc_list {
-        println!("PID: {}, Name: {}, Container ID: {},Vsz {},Rss {}, Memory Usage: {}, CPU Usage: {},action {}, timestamp {} ", process.pid, process.name, process.container_id,process.vsz,process.rss,  process.memory_usage, process.cpu_usage,process.action,process.timestamp);
+        println!("PID: {}, Name: {}, Container ID: {}, Memory Usage: {}, CPU Usage: {}, ", process.pid, process.name, process.container_id,  process.memory_usage, process.cpu_usage);
     }
 
     println!("------------------------------");
@@ -344,6 +347,17 @@ fn cleanup(){
 }
 
 fn main() {
+    
+    let running = Arc::new(AtomicBool::new(true));
+    let r = running.clone();
+
+    // Configura el manejador de la señal Ctrl+C
+    ctrlc::set_handler(move || {
+        println!("Ctrl+C presionado!");
+        cleanup(); // Llama a la función de limpieza
+        r.store(false, Ordering::SeqCst); // Cambia el flag a false para salir del bucle
+    }).expect("Error al configurar el manejador de Ctrl+C");
+
     println!("------------------------------");
 
     let ruta = "../scripts/imagenLogs";
@@ -388,29 +402,52 @@ fn main() {
     println!("------------------------------");
     // TODO: Utilizar algo para capturar la señal de terminación y matar el contenedor registro y cronjob.
 
-    loop {
-        
-    // Creamos una estructura de datos SystemInfo con un vector de procesos vacío.
+    while running.load(Ordering::SeqCst) {
+        // Aquí va la lógica principal del programa
+         // Creamos una estructura de datos SystemInfo con un vector de procesos vacío.
         let system_info: Result<SystemInfo, _>;
 
-        // Leemos el contenido del archivo proc y lo guardamos en la variable json_str.
+         // Leemos el contenido del archivo proc y lo guardamos en la variable json_str.
         let json_str = read_proc_file("sysinfo_202010044").unwrap();
-
-        // Deserializamos el contenido del archivo proc a un SystemInfo.
+ 
+         // Deserializamos el contenido del archivo proc a un SystemInfo.
         system_info = parse_proc_to_struct(&json_str);
-
-        // Dependiendo de si se pudo deserializar el contenido del archivo proc o no, se ejecuta una u otra rama.
+ 
+         // Dependiendo de si se pudo deserializar el contenido del archivo proc o no, se ejecuta una u otra rama.
         match system_info {
-            Ok( info) => {
-                analyzer(info,&container_id);
-            }
-            Err(e) => println!("Failed to parse JSON: {}", e),
-        }
-
-        // Dormimos el hilo principal por 10 segundos.
-        std::thread::sleep(std::time::Duration::from_secs(10));
-        //break;
+             Ok( info) => {
+                 analyzer(info,&container_id);
+             }
+             Err(e) => println!("Failed to parse JSON: {}", e),
+         }
+ 
+         // Dormimos el hilo principal por 10 segundos.
+         std::thread::sleep(std::time::Duration::from_secs(10));
+         //break;
     }
+    // loop {
+        
+    // // Creamos una estructura de datos SystemInfo con un vector de procesos vacío.
+    //     let system_info: Result<SystemInfo, _>;
+
+    //     // Leemos el contenido del archivo proc y lo guardamos en la variable json_str.
+    //     let json_str = read_proc_file("sysinfo_202010044").unwrap();
+
+    //     // Deserializamos el contenido del archivo proc a un SystemInfo.
+    //     system_info = parse_proc_to_struct(&json_str);
+
+    //     // Dependiendo de si se pudo deserializar el contenido del archivo proc o no, se ejecuta una u otra rama.
+    //     match system_info {
+    //         Ok( info) => {
+    //             analyzer(info,&container_id);
+    //         }
+    //         Err(e) => println!("Failed to parse JSON: {}", e),
+    //     }
+
+    //     // Dormimos el hilo principal por 10 segundos.
+    //     std::thread::sleep(std::time::Duration::from_secs(10));
+    //     //break;
+    // }
 
 
    

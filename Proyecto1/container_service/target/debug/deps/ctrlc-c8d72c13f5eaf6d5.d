@@ -1,0 +1,11 @@
+/home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/container_service/target/debug/deps/libctrlc-c8d72c13f5eaf6d5.rmeta: /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/lib.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/error.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/platform/mod.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/platform/unix/mod.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/signal.rs
+
+/home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/container_service/target/debug/deps/libctrlc-c8d72c13f5eaf6d5.rlib: /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/lib.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/error.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/platform/mod.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/platform/unix/mod.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/signal.rs
+
+/home/rami/LabSopes/SO1_2S2024_202010044/Proyecto1/container_service/target/debug/deps/ctrlc-c8d72c13f5eaf6d5.d: /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/lib.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/error.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/platform/mod.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/platform/unix/mod.rs /home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/signal.rs
+
+/home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/lib.rs:
+/home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/error.rs:
+/home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/platform/mod.rs:
+/home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/platform/unix/mod.rs:
+/home/rami/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ctrlc-3.4.5/src/signal.rs:

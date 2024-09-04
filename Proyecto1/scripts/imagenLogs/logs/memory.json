@@ -82,5 +82,35 @@
         "free_ram": 3713212,
         "usage_ram": 12562308,
         "timestamp": "2024-09-03 16:11:36"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 10485580,
+        "usage_ram": 5789932,
+        "timestamp": "2024-09-04 04:35:44"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 10494304,
+        "usage_ram": 5781208,
+        "timestamp": "2024-09-04 04:35:54"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 10417608,
+        "usage_ram": 5857904,
+        "timestamp": "2024-09-04 04:39:34"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 10491812,
+        "usage_ram": 5783700,
+        "timestamp": "2024-09-04 04:39:44"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 10511648,
+        "usage_ram": 5763864,
+        "timestamp": "2024-09-04 04:39:54"
     }
 ]
