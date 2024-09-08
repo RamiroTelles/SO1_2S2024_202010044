@@ -130,5 +130,305 @@
         "free_ram": 2744512,
         "usage_ram": 13531000,
         "timestamp": "2024-09-04 17:29:19"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7513956,
+        "usage_ram": 8761556,
+        "timestamp": "2024-09-08 06:09:33"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7559908,
+        "usage_ram": 8715604,
+        "timestamp": "2024-09-08 06:09:43"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7579040,
+        "usage_ram": 8696472,
+        "timestamp": "2024-09-08 06:09:53"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7566436,
+        "usage_ram": 8709076,
+        "timestamp": "2024-09-08 06:10:03"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7494964,
+        "usage_ram": 8780548,
+        "timestamp": "2024-09-08 06:10:13"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7523200,
+        "usage_ram": 8752312,
+        "timestamp": "2024-09-08 06:10:23"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7360008,
+        "usage_ram": 8915504,
+        "timestamp": "2024-09-08 06:10:33"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7470184,
+        "usage_ram": 8805328,
+        "timestamp": "2024-09-08 06:10:43"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7482016,
+        "usage_ram": 8793496,
+        "timestamp": "2024-09-08 06:10:53"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7488152,
+        "usage_ram": 8787360,
+        "timestamp": "2024-09-08 06:11:03"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7491148,
+        "usage_ram": 8784364,
+        "timestamp": "2024-09-08 06:11:14"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7479168,
+        "usage_ram": 8796344,
+        "timestamp": "2024-09-08 06:11:24"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7482308,
+        "usage_ram": 8793204,
+        "timestamp": "2024-09-08 06:11:34"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7509804,
+        "usage_ram": 8765708,
+        "timestamp": "2024-09-08 06:11:44"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7510092,
+        "usage_ram": 8765420,
+        "timestamp": "2024-09-08 06:11:54"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 6961756,
+        "usage_ram": 9313756,
+        "timestamp": "2024-09-08 06:12:04"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7245256,
+        "usage_ram": 9030256,
+        "timestamp": "2024-09-08 06:12:15"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7285660,
+        "usage_ram": 8989852,
+        "timestamp": "2024-09-08 06:12:25"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7307668,
+        "usage_ram": 8967844,
+        "timestamp": "2024-09-08 06:12:35"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7373532,
+        "usage_ram": 8901980,
+        "timestamp": "2024-09-08 06:12:45"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7377752,
+        "usage_ram": 8897760,
+        "timestamp": "2024-09-08 06:12:55"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 6658596,
+        "usage_ram": 9616916,
+        "timestamp": "2024-09-08 06:13:05"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7313744,
+        "usage_ram": 8961768,
+        "timestamp": "2024-09-08 06:13:17"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7316040,
+        "usage_ram": 8959472,
+        "timestamp": "2024-09-08 06:13:27"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7266312,
+        "usage_ram": 9009200,
+        "timestamp": "2024-09-08 06:13:37"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7333220,
+        "usage_ram": 8942292,
+        "timestamp": "2024-09-08 06:13:47"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7318740,
+        "usage_ram": 8956772,
+        "timestamp": "2024-09-08 06:13:57"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7088036,
+        "usage_ram": 9187476,
+        "timestamp": "2024-09-08 06:14:07"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7280384,
+        "usage_ram": 8995128,
+        "timestamp": "2024-09-08 06:14:19"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7255956,
+        "usage_ram": 9019556,
+        "timestamp": "2024-09-08 06:14:29"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7265952,
+        "usage_ram": 9009560,
+        "timestamp": "2024-09-08 06:14:39"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7223168,
+        "usage_ram": 9052344,
+        "timestamp": "2024-09-08 06:14:49"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7222164,
+        "usage_ram": 9053348,
+        "timestamp": "2024-09-08 06:14:59"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 6877112,
+        "usage_ram": 9398400,
+        "timestamp": "2024-09-08 06:15:09"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7215656,
+        "usage_ram": 9059856,
+        "timestamp": "2024-09-08 06:15:20"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7205512,
+        "usage_ram": 9070000,
+        "timestamp": "2024-09-08 06:15:31"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7218228,
+        "usage_ram": 9057284,
+        "timestamp": "2024-09-08 06:15:41"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7199412,
+        "usage_ram": 9076100,
+        "timestamp": "2024-09-08 06:15:51"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7219544,
+        "usage_ram": 9055968,
+        "timestamp": "2024-09-08 06:16:01"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7022304,
+        "usage_ram": 9253208,
+        "timestamp": "2024-09-08 06:16:11"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7214808,
+        "usage_ram": 9060704,
+        "timestamp": "2024-09-08 06:16:22"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7199408,
+        "usage_ram": 9076104,
+        "timestamp": "2024-09-08 06:16:33"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7199436,
+        "usage_ram": 9076076,
+        "timestamp": "2024-09-08 06:16:43"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7276540,
+        "usage_ram": 8998972,
+        "timestamp": "2024-09-08 06:16:53"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7254280,
+        "usage_ram": 9021232,
+        "timestamp": "2024-09-08 06:17:03"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7261768,
+        "usage_ram": 9013744,
+        "timestamp": "2024-09-08 06:17:13"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7250396,
+        "usage_ram": 9025116,
+        "timestamp": "2024-09-08 06:17:23"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7251172,
+        "usage_ram": 9024340,
+        "timestamp": "2024-09-08 06:17:33"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7248504,
+        "usage_ram": 9027008,
+        "timestamp": "2024-09-08 06:17:43"
+    },
+    {
+        "total_ram": 16275512,
+        "free_ram": 7273500,
+        "usage_ram": 9002012,
+        "timestamp": "2024-09-08 06:17:53"
     }
 ]
