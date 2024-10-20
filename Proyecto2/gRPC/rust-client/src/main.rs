@@ -2,6 +2,9 @@ use studentgrpc::student_client::StudentClient;
 use actix_web::{web, App, HttpServer, HttpResponse, Responder};
 use studentgrpc::StudentRequest;
 use serde::{Deserialize, Serialize};
+//use std::thread;
+//use std::sync::mpsc;
+
 
 pub mod studentgrpc {
     tonic::include_proto!("student");
@@ -41,17 +44,22 @@ async fn handle_student(student: web::Json<StudentData>) -> impl Responder {
     });
 
     
+    tokio::spawn(async move {
+    
+        match client.send_student(request).await{
+            Ok(response) => {
 
-    match client.send_student(request).await {
-        Ok(response) => {
+                println!("RESPONSE={:?}", response);
+    
+                
+            },
+            Err(e) =>  println!("ERROR={:?}", e),
+        }
+        
+    });
 
-            println!("RESPONSE={:?}", response);
-
-            HttpResponse::Ok().json
-            (format!("Student: {:?}", response))
-        },
-        Err(e) => HttpResponse::InternalServerError().body(format!("gRPC call failed: {}", e)),
-    }
+    HttpResponse::Ok().json(format!("Ok"))
+    
 }
 
 #[actix_web::main]
