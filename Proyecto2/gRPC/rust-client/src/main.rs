@@ -43,7 +43,7 @@ async fn handle_student(student: web::Json<StudentData>) -> impl Responder {
         discipline: student.discipline,
     });
 
-    
+    //creacion hilo con tokio
     tokio::spawn(async move {
     
         match client.send_student(request).await{
