@@ -19,23 +19,25 @@ struct StudentData {
 }
 
 async fn handle_student(student: web::Json<StudentData>) -> impl Responder {
-
+    println!("peticion");
     let addr: &str;
-    if student.discipline == 1{
-        addr = "http://localhost:50051";
-    }else if student.discipline==2{
-        addr = "http://localhost:50052";
+    if student.discipline == 0{
+        addr = "grpc-server-service-swimming:50051";
+    }else if student.discipline==1{
+        addr = "grpc-server-service-running:50051";
     }else{
-        addr = "http://localhost:50053";
+        addr = "grpc-server-service-boxing:50051";
     }
 
-
-    let mut client = match StudentClient::connect(addr).await {
+    println!("{}",addr);
+    let mut client = match StudentClient::connect(format!("http://{}", addr)).await {
         Ok(client) => client,
-        Err(e) => return HttpResponse::InternalServerError().body(format!("Failed to connect to gRPC server: {}", e)),
+        Err(e) => return {
+            println!("{}",e);
+            HttpResponse::InternalServerError().body(format!("Failed to connect to gRPC server: {}", e))},
     };
     
-
+    println!("conecto");
     let request = tonic::Request::new(StudentRequest {
         name: student.name.clone(),
         age: student.age,
@@ -43,7 +45,7 @@ async fn handle_student(student: web::Json<StudentData>) -> impl Responder {
         discipline: student.discipline,
     });
 
-    //creacion hilo con tokio
+    
     tokio::spawn(async move {
     
         match client.send_student(request).await{
@@ -62,14 +64,17 @@ async fn handle_student(student: web::Json<StudentData>) -> impl Responder {
     
 }
 
+
 #[actix_web::main]
 async fn main()-> std::io::Result<()> {
-    println!("Starting server at http://localhost:8081");
+    println!("Starting server at http://0.0.0.0:8081");
+    
     HttpServer::new(|| {
         App::new()
-            .route("/faculty", web::post().to(handle_student))
+            .route("/grpc-rust", web::post().to(handle_student))
+       
     })
-    .bind("127.0.0.1:8081")?
+    .bind("0.0.0.0:8081")?
     .run()
     .await
 }

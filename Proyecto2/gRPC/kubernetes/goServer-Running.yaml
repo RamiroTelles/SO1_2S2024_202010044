@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-server-go-running
+  namespace: sopes1
+spec:
+  selector: 
+    matchLabels:
+      app: grpc-server-go-running
+  template:
+    metadata:
+      labels:
+        app: grpc-server-go-running
+    spec:
+      containers:
+      - name: grpc-server-go-running
+        image: ramirotelles/golang-server-grpc:0.1
+        ports:
+        - containerPort: 50051
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: grpc-server-service-running
+  namespace: sopes1
+spec: 
+  selector:
+    app: grpc-server-go-running
+  ports:
+    - protocol: TCP
+      port: 50051
+      targetPort: 50051
+  type: ClusterIP

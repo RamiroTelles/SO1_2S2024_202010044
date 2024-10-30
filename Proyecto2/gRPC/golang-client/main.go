@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 	pb "golang-client/proto"
 	"log"
 	"time"
@@ -13,9 +14,9 @@ import (
 )
 
 var (
-	addr1 = flag.String("addr1", "localhost:50051", "the address to connect to")
-	addr2 = flag.String("addr2", "localhost:50052", "the address to connect to")
-	addr3 = flag.String("addr3", "localhost:50053", "the address to connect to")
+	addr1 = flag.String("addr1", "grpc-server-service-swimming:50051", "the address to connect to")
+	addr2 = flag.String("addr2", "grpc-server-service-running:50051", "the address to connect to")
+	addr3 = flag.String("addr3", "grpc-server-service-boxing:50051", "the address to connect to")
 )
 
 type Student struct {
@@ -34,11 +35,12 @@ func sendData(fiberCtx *fiber.Ctx) error {
 	}
 
 	address := *addr1
-	if body.Discipline == 2 {
+	if body.Discipline == 1 {
 		address = *addr2
-	} else if body.Discipline == 3 {
+	} else if body.Discipline == 2 {
 		address = *addr3
 	}
+	fmt.Println(body)
 
 	conn, err := grpc.NewClient(address, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
@@ -90,7 +92,7 @@ func sendData(fiberCtx *fiber.Ctx) error {
 
 func main() {
 	app := fiber.New()
-	app.Post("/faculty", sendData)
+	app.Post("/grpc-go", sendData)
 
 	err := app.Listen(":8080")
 	if err != nil {
