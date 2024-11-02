@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: go-producer-test
+  namespace: sopes1
+spec: 
+  selector:
+    matchLabels:
+      app: go-producer-test
+  template: 
+    metadata:
+      labels:
+        app: go-producer-test
+    spec:
+      containers:
+      - name: go-producer-test
+        image: ramirotelles/producer-test:0.11
+        ports: 
+        - containerPort: 8080  

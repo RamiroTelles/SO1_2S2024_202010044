@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: go-consumer-winner
+  namespace: sopes1
+spec: 
+  selector:
+    matchLabels:
+      app: go-consumer-winner
+  template: 
+    metadata:
+      labels:
+        app: go-consumer-winner
+    spec:
+      containers:
+      - name: go-consumer-winner
+        image: ramirotelles/consumer-winner:0.3
+        ports: 
+        - containerPort: 8080  

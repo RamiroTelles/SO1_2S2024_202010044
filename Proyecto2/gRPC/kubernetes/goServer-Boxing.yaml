@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: grpc-server-go-boxing
-        image: ramirotelles/golang-server-grpc:0.1
+        image: ramirotelles/golang-server-grpc:0.21
         ports:
         - containerPort: 50051
 ---

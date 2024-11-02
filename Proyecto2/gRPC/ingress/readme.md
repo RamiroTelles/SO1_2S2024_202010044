@@ -21,4 +21,14 @@ helm upgrade --install ingress-nginx ingress-nginx \
   --namespace ingress-nginx --create-namespace
 ```
 
+
+Luego correr el siguiente comando para obtener la ip
+```bash
+kubectl get all -n ingress-nginx
+```
+
+copiar el external ip y remplazarlo en el host: 
+del yaml ingress.yaml en la carpeta cubernetes y correrlo
+
+
 luego correr el ingress.yaml en la carpeta kubernetes

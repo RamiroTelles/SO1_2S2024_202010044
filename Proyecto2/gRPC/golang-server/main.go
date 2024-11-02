@@ -4,7 +4,10 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"golang-server/kafka"
+	"golang-server/structs"
 	"log"
+	"math/rand"
 	"net"
 
 	pb "golang-server/proto"
@@ -26,6 +29,15 @@ func (s *server) SendStudent(_ context.Context, in *pb.StudentRequest) (*pb.Stud
 	log.Printf("Student faculty: %s", in.GetFaculty())
 	log.Printf("Student age: %d", in.GetAge())
 	log.Printf("Student discipline: %d", in.GetDiscipline())
+
+	// Generamos un número aleatorio, 0 o 1
+	result := rand.Intn(2)
+	topic := "winner"
+	if result == 1 {
+		topic = "loser"
+	}
+	fmt.Println("topico enviado:", topic)
+	go kafka.SendData(structs.Student{in.GetName(), int(in.GetAge()), in.GetFaculty(), int(in.GetDiscipline())}, topic)
 
 	return &pb.StudentResponse{
 		Success: true,
